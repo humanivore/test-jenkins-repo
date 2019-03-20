@@ -26,7 +26,7 @@ pipeline {
 
       }
       steps {
-        bat 'activate ${BUILD_TAG} python setup.py bdist_wheel'
+        bat 'python setup.py bdist_wheel'
       }
     }
     stage('Deploy to TestPyPI') {
