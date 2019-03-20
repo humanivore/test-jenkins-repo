@@ -12,6 +12,7 @@ pipeline {
                 echo 'Building'
             }
         }
+        /*
         stage('Unit tests') {
             steps {
                 sh  ''' source activate ${BUILD_TAG}
@@ -25,6 +26,7 @@ pipeline {
                 }
             }
         }
+        */
         stage('Build package') {
             when {
                 expression {
