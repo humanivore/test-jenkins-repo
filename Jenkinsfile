@@ -21,7 +21,7 @@ pipeline {
             post {
                 always {
                     // Archive unit tests for the future
-                    junit allowEmptyResults: true, testResults: 'test-reports/results.xml', fingerprint: true
+                    junit allowEmptyResults: true, testResults: 'test-reports/results.xml'
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             post {
                 always {
                     // Archive unit tests for the future
-                    archiveArtifacts allowEmptyArchive: true, artifacts: 'dist/*whl', fingerprint: true
+                    archiveArtifacts allowEmptyArchive: true, artifacts: 'dist/*whl'
                 }
             }
         }
