@@ -1,0 +1,11 @@
+/.idea/
+/idlib/.idea/
+
+*.pyc
+
+/*.egg-info
+/dist/
+/build/
+
+/venv/
+/.pytest_cache/
