@@ -44,7 +44,6 @@ pipeline {
             }
         }
         stage("Deploy to TestPyPI") {
-            }
             steps {
                 sh "twine upload --repository-url https://test.pypi.org/legacy/ dist/*"
             }
