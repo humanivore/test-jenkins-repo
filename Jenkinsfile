@@ -6,9 +6,9 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build') {
+    stage('Test') {
       steps {
-        echo 'Building'
+        bat 'python -m pytest --verbose --junit-xml test-reports/results.xml'
       }
     }
     stage('Build package') {
