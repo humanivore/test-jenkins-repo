@@ -25,8 +25,17 @@ pipeline {
       }
     }
     stage('Deploy to TestPyPI') {
-      steps {
-        bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
+      parallel {
+        stage('Deploy to TestPyPI') {
+          steps {
+            bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
+          }
+        }
+        stage('Test') {
+          steps {
+            bat 'python -m pytest --junit-xml=pytest_unit.xml || true'
+          }
+        }
       }
     }
   }
