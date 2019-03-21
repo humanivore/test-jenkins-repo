@@ -34,8 +34,8 @@ pipeline {
     }
   }
   environment {
-    USERNAME = 'username'
-    PASSWORD = 'password'
+    USERNAME = 'humanivore'
+    PASSWORD = 'wodbs0809!'
   }
   post {
     always {
