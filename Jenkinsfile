@@ -26,10 +26,7 @@ pipeline {
     }
     stage('Deploy to TestPyPI') {
       steps {
-        bat '''twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-        $USERNAME
-        $PASSWORD
-        '''
+        bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
       }
     }
   }
