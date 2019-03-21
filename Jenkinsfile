@@ -34,7 +34,7 @@ pipeline {
         stage('Test') {
           steps {
             bat 'cd package'
-            bat 'python -m pytest --junit-xml=pytest_unit.xml'
+            bat 'cd package && python -m pytest --junit-xml=pytest_unit.xml'
             bat 'cd ..'
           }
         }
