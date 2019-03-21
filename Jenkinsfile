@@ -33,9 +33,7 @@ pipeline {
         }
         stage('Test') {
           steps {
-            bat 'cd package'
-            bat 'cd package && python -m pytest --junit-xml=pytest_unit.xml'
-            bat 'cd ..'
+            bat 'python -m pytest --junit-xml=pytest_unit.xml --pyargs package'
           }
         }
       }
