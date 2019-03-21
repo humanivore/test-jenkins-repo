@@ -26,10 +26,7 @@ pipeline {
     }
     stage('Deploy to TestPyPI') {
       steps {
-        withCredentials(bindings: [usernamePassword(usernameVariable: $USERNAME , passwordVariable: $PASSWORD)]) {
-          bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
-        }
-
+        bat '\'\'\'twine upload --repository-url https://test.pypi.org/legacy/ dist/* $USERNAME $PASSWORD \'\'\''
       }
     }
   }
