@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  environment {
-        USERNAME = credentials('username')
-        PASSWORD = credentials('password')
-  }
   stages {
     stage('Pull code from github') {
       steps {
@@ -30,11 +26,16 @@ pipeline {
     }
     stage('Deploy to TestPyPI') {
       steps {
-        withCredentials([usernamePassword(usernameVariable: $USERNAME , passwordVariable: $PASSWORD)]){
+        withCredentials(bindings: [usernamePassword(usernameVariable: $USERNAME , passwordVariable: $PASSWORD)]) {
           bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
-         }
+        }
+
       }
     }
+  }
+  environment {
+    USERNAME = 'username'
+    PASSWORD = 'password'
   }
   post {
     always {
