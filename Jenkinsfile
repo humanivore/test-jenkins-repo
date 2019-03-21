@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Test') {
           steps {
-            bat 'python -m pytest --junit-xml=pytest_unit.xml test.py'
+            bat 'python -m pytest --junit-xml=pytest_unit.xml %cd%'
           }
         }
       }
