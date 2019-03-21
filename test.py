@@ -10,5 +10,5 @@ class Module1TestCase(unittest.TestCase):
 
 class Module2TestCase(unittest.TestCase):
     def test_post_request(self):
-        resp = package.module2.post_request("http://example.com")
+        resp = package.module2.post_request("http://example.com", "some data")
         self.assertEqual(resp.status_code, 200, "POST request failed.")
