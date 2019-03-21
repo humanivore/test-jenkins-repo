@@ -30,10 +30,6 @@ pipeline {
       }
     }
   }
-  environment {
-    USERNAME = 'humanivore'
-    PASSWORD = 'wodbs0809!'
-  }
   post {
     always {
       echo 'This will always run'

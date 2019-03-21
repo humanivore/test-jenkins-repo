@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='test-jenkins-repo',
-    version='1.0',
+    version='1.1',
     python_requires='>=3.6',
     author_name='humanivore',
     url='https://github.com/humanivore/test-jenkins-repo',
