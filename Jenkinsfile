@@ -1,8 +1,3 @@
-/* groovylint-disable DuplicateStringLiteral, NestedBlockDepth, NoDef */
-/* groovylint-disable UnusedVariable, VariableName, VariableTypeRequired */
-// Groovy Style Guide: http://groovy-lang.org/style-guide.html
-
-/* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent any
     stages {
