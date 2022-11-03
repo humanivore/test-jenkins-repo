@@ -15,6 +15,7 @@ pipeline {
                 e ->
                     def env_config = readJSON file: "./data-${e}.json"
                     sh "python update_config.py -d ./source.json -o ./data-${e}.json"
+                    sh "echo 'updated data-${e}.json'"
             }
         }
     }

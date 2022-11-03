@@ -23,3 +23,4 @@ if __name__ == "__main__":
     outputFile = open(args.output, 'w')
     outputFile.write(json.dumps(outputJSON, indent=2))
     outputFile.close()
+    print("Done")
