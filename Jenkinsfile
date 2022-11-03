@@ -1,70 +1,33 @@
-pipeline {
-  agent any
-  stages {
-    stage('Pull code from github') {
-      steps {
-        checkout scm
-      }
-    }
-    stage('Build package') {
-      when {
-        expression {
-          currentBuild.result == null || currentBuild.result == 'SUCCESS'
+/* groovylint-disable DuplicateStringLiteral, NestedBlockDepth, NoDef */
+/* groovylint-disable UnusedVariable, VariableName, VariableTypeRequired */
+// Groovy Style Guide: http://groovy-lang.org/style-guide.html
+
+/* groovylint-disable-next-line CompileStatic */
+@Library ('PSL@LKG') _
+
+node('aws-centos') {
+    timestamps {
+        wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+            def commonSCM = new ors.utils.common_scm(steps, env)
+            
+
+            stage('Checkout source') {
+                sh 'printenv'
+                checkout scm
+                commonSCM.clean_workspace()
+            }
+
+            stage('Update configuration') {
+                def env = ['dev', 'stg', 'prd']
+                env.each {
+                    e ->
+                        def env_config = readJSON file: "./data-${e}.json"
+
+                        sh """
+                            python update_config.py -d ./source.json -o ./data-${e}.json
+                        """
+                }
+            }
         }
-
-      }
-      post {
-        always {
-          archiveArtifacts(allowEmptyArchive: true, artifacts: 'dist/*whl')
-
-        }
-
-      }
-      steps {
-        bat 'python setup.py bdist_wheel'
-      }
     }
-    stage('Deploy to TestPyPI') {
-      parallel {
-        stage('Deploy to TestPyPI') {
-          steps {
-            bat 'twine upload --repository-url https://test.pypi.org/legacy/ dist/*'
-          }
-        }
-        stage('Test') {
-          steps {
-            bat 'python -m pytest --junit-xml=pytest_unit.xml package/test.py'
-          }
-        }
-      }
-    }
-  }
-  post {
-    always {
-      echo 'This will always run'
-
-    }
-
-    success {
-      echo 'This will run only if successful'
-
-    }
-
-    failure {
-      echo 'This will run only if failed'
-
-    }
-
-    unstable {
-      echo 'This will run only if the run was marked as unstable'
-
-    }
-
-    changed {
-      echo 'This will run only if the state of the Pipeline has changed'
-      echo 'For example, if the Pipeline was previously failing but is now successful'
-
-    }
-
-  }
 }
