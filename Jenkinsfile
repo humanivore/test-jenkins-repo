@@ -4,6 +4,7 @@
 
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
+    agent any
     stages {
         stage('Checkout source') {
             sh 'printenv'
