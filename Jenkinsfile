@@ -7,8 +7,8 @@ pipeline {
     agent any
     stages {
         stage('Checkout source') {
-            sh 'printenv'
             checkout scm
+            echo "here"
         }
         stage('Update configuration') {
             def env = ['dev', 'stg', 'prd']
