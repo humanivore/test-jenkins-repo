@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Update configuration') {
             steps {
+                sh "sudo apt-get install git-all"
                 sh "git checkout master"
                 sh "python update_config.py -d ./source.json -o ./data-dev.json"
                 echo 'updated data-dev.json'
